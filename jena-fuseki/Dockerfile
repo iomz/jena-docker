@@ -28,8 +28,8 @@ RUN set -eux; \
 
 # Update below according to https://jena.apache.org/download/ 
 # and checksum for apache-jena-fuseki-4.x.x.tar.gz.sha512
-ENV FUSEKI_SHA512 c0b9ab61a57f2c0e027f9d1a07710a22e672eb87730a6460b0869f6a6997a2628703bd99b1590bccd38bdc2a0f78d7be17890b4b88f65ef5518c882c8736a6b3
-ENV FUSEKI_VERSION 4.0.0
+ENV FUSEKI_SHA512 3555ca2f349b24a6a77f110a736df55f19ed7b8a16d9fb865b395c6152d8d89076ad6438e87ed894d5a01594601c30ec5c4c24906cca4f6777185bd8e33f9aaf
+ENV FUSEKI_VERSION 4.1.0
 # No need for https due to sha512 checksums below
 ENV ASF_MIRROR http://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename=
 ENV ASF_ARCHIVE http://archive.apache.org/dist/
@@ -92,6 +92,7 @@ RUN rm -rf $FUSEKI_BASE
 VOLUME $FUSEKI_BASE
 
 EXPOSE 3030
+STOPSIGNAL SIGINT
 ENTRYPOINT ["/usr/bin/tini", "--", "/docker-entrypoint.sh"]
 CMD ["/jena-fuseki/fuseki-server"]
 
